@@ -1,0 +1,20 @@
+<div class="planet">
+  <div class="planet-wrapper" *ngIf="!loading">
+    <a *ngFor="let planet of data" class="planet-card" [routerLink]="[planet.id]">
+      <h2>{{ planet.name }}</h2>
+      <div>climate: <span>{{ planet.climate }}</span></div>
+      <div>created: <span>{{ planet.created }}</span></div>
+      <div>diameter: <span>{{ planet.diameter }}</span></div>
+      <div>edited: <span>{{ planet.edited }}</span></div>
+      <div>gravity: <span>{{ planet.gravity }}</span></div>
+      <div>orbital period: <span>{{ planet.orbital_period }}</span></div>
+      <div>population: <span>{{ planet.population }}</span></div>
+      <div>rotation period: <span>{{ planet.rotation_period }}</span></div>
+      <div>surface water: <span>{{ planet.surface_water }}</span></div>
+      <div>terrain: <span>{{ planet.terrain }}</span></div>
+    </a>
+  </div>
+  <div class="loading" *ngIf="loading">
+    loading...
+  </div>
+</div>
