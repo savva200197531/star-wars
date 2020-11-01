@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IPlanet } from '../../services/models';
+import { IPlanet, IResidents } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SwapiService } from '../../services/swapi.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class PlanetInfoComponent {
   data: IPlanet[];
+  residents: IResidents[];
   error: boolean;
   loading = true;
 
@@ -41,8 +42,9 @@ export class PlanetInfoComponent {
   }
 
   _onLoadSuccess([planetInfo, residents]) {
-    console.log(planetInfo, residents);
-    // console.log(residents);
+    // console.log(planetInfo, residents);
+    this.residents = residents;
+    console.log(this.residents);
     this.error = false;
     this.loading = false;
   }

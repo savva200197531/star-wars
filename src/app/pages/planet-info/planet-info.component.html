@@ -1,1 +1,7 @@
-<p>planet-info works!</p>
+<div class="planet-info">
+  <div class="planet-info-wrapper">
+    <div *ngFor="let resident of residents" class="residents">
+      <div>{{ resident.birth_year }}</div>
+    </div>
+  </div>
+</div>
