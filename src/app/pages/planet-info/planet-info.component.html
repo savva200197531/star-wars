@@ -1,7 +1,60 @@
 <div class="planet-info">
-  <div class="planet-info-wrapper">
-    <div *ngFor="let resident of residents" class="residents">
-      <div>{{ resident.birth_year }}</div>
+  <div class="loading" *ngIf="loading">
+    Loading
+    <app-loading></app-loading>
+  </div>
+  <div class="planet-wrapper" *ngIf="!loading">
+    <div class="planet-info-header">
+      <a class="planet-link" (click)="goBack()">Go back</a>
+      <div class="gender-filter" *ngIf="allResidents.length">
+        <h2 class="gender-filter-title">Filter by gender</h2>
+        <form #genderForm="ngForm" (change)="filterResidents($event)">
+          <input type="radio" id="all" name="gender" class="gender-filter-item" checked>
+          <label for="all">All</label>
+          <input type="radio" id="male" name="gender" class="gender-filter-item">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" class="gender-filter-item">
+          <label for="female">Female</label>
+          <input type="radio" id="n/a" name="gender" class="gender-filter-item">
+          <label for="n/a">N/a</label>
+        </form>
+      </div>
+    </div>
+    <div class="planet">
+      <h1 class="planet-name">{{ planetInfo.name }}</h1>
+      <div>climate: <span>{{ planetInfo.climate }}</span></div>
+      <div>created: <span>{{ planetInfo.created }}</span></div>
+      <div>diameter: <span>{{ planetInfo.diameter }}</span></div>
+      <div>edited: <span>{{ planetInfo.edited }}</span></div>
+      <div>gravity: <span>{{ planetInfo.gravity }}</span></div>
+      <div>orbital period: <span>{{ planetInfo.orbital_period }}</span></div>
+      <div>population: <span>{{ planetInfo.population }}</span></div>
+      <div>rotation period: <span>{{ planetInfo.rotation_period }}</span></div>
+      <div>surface water: <span>{{ planetInfo.surface_water }}</span></div>
+      <div>terrain: <span>{{ planetInfo.terrain }}</span></div>
+    </div>
+    <h1 class="residents-title">Residents</h1>
+    <div class="residents" *ngIf="residents.length">
+      <div *ngFor="let resident of residents" class="resident">
+        <h1 class="resident-name">{{ resident.name }}</h1>
+        <div>birth year: <span>{{ resident.birth_year }}</span></div>
+        <div>created: <span>{{ resident.created }}</span></div>
+        <div>edited: <span>{{ resident.edited }}</span></div>
+        <div>eye color: <span>{{ resident.eye_color }}</span></div>
+        <!--      <div>films: <span>{{ resident.films }}</span></div>-->
+        <div>gender: <span>{{ resident.gender }}</span></div>
+        <div>hair_color: <span>{{ resident.hair_color }}</span></div>
+        <div>height: <span>{{ resident.height }}</span></div>
+        <div>home world: <span>{{ resident.homeworld }}</span></div>
+        <div>mass: <span>{{ resident.mass }}</span></div>
+        <div>species: <span>{{ resident.species }}</span></div>
+        <!--      <div>starships: <span>{{ resident.starships }}</span></div>-->
+        <div>url: <span>{{ resident.url }}</span></div>
+        <!--      <div>vehicles: <span>{{ resident.vehicles }}</span></div>-->
+      </div>
+    </div>
+    <div class="residents-empty" *ngIf="!residents.length">
+      <h1>There are no residents on this planet.</h1>
     </div>
   </div>
 </div>

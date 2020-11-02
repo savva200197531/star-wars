@@ -1,25 +1,38 @@
 @import "../../../styles/variables";
 
 :host {
-  .planet {
-    //background: #000;
-  }
-
   .loading {
-    color: white;
-    font-size: 200px;
+    margin-top: 300px;
+    color: $cardText;
+    font-size: 100px;
     font-weight: 900;
     text-align: center;
   }
 
-  .planet-wrapper {
+  .planet {
+    color: $cardText;
+  }
+
+  .planets-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .planets-wrapper {
     max-width: 1200px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     color: $cardText;
-    //grid-gap: 20px;
+    grid-gap: 10px;
+  }
+
+  .planet-name {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
   }
 
   .planet-card {
@@ -37,8 +50,21 @@
 
   .planet-card:hover {
     cursor: pointer;
-    //background: $cardBgHovered;
     transition: 0.2s ease-in;
-    //border-radius: 6px;
+  }
+
+  .pages {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .page-link {
+    cursor: pointer;
+  }
+
+  .page-link:last-child {
+    margin-left: 30px;
   }
 }

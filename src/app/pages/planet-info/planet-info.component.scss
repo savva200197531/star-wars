@@ -1,13 +1,101 @@
+@import "../../../styles/variables";
+
 :host {
   .planet-info {
-
+    color: $cardText;
   }
 
-  .planet-info-wrapper {
+  .planet-link {
+    color: $cardText;
+    font-weight: 700;
+    font-size: 20px;
+    border: 3px solid $cardText;
+    border-radius: 4px;
+    padding: 5px 8px;
+  }
 
+  .planet-info-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .gender-filter {
+    input, label {
+      cursor: pointer;
+    }
+  }
+
+  .gender-filter-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: right;
+    margin-bottom: 15px;
+  }
+
+  .gender-filter-item {
+    margin-left: 10px;
+  }
+
+  .planet {
+    margin-top: 15px;
+    font-weight: 700;
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .loading {
+    margin-top: 300px;
+    color: $cardText;
+    font-size: 100px;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .planet-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto 10px auto;
   }
 
   .residents {
-    color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 10px;
+  }
+
+  .resident-name {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .resident {
+    background: $cardBg;
+    padding: 7px 10px;
+    border-radius: 4px;
+    border: 3px solid #ffffff;
+    font-weight: 700;
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .resident:hover {
+    cursor: pointer;
+    transition: 0.2s ease-in;
+  }
+
+  .residents-empty {
+    text-align: center;
+  }
+
+  .residents-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }

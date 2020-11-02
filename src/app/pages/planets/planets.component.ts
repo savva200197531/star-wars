@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class PlanetsComponent implements OnInit {
   data: IPlanet[];
+  dataPreview: IPlanetsPreview;
   error: boolean;
   loading = true;
 
@@ -17,24 +18,26 @@ export class PlanetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
+    this.loadData('');
   }
 
-  loadData() {
-    this.service.getPlanets()
+  loadData(page) {
+    this.service.getPlanets(page)
       .subscribe(
         (data: IPlanetsPreview) => this._onLoadSuccess(data),
         response => this._onLoadError(response)
       );
   }
 
-  _onLoadError(response: HttpErrorResponse) {
-    this.error = true;
-  }
-
   _onLoadSuccess(data: IPlanetsPreview) {
     this.data = data.results;
+    console.log(data);
+    this.dataPreview = data;
     this.error = false;
     this.loading = false;
+  }
+
+  _onLoadError(response: HttpErrorResponse) {
+    this.error = true;
   }
 }

@@ -15,8 +15,9 @@ export class SwapiService {
     return `https://swapi.dev/api/${path}`;
   }
 
-  getPlanets() {
-    const path = this.url('planets');
+  getPlanets(page: string) {
+    let path: string;
+    !page ? path = this.url('planets') : path = page;
     return this.http.get<IPlanetsPreview | HttpErrorResponse>(path)
       .pipe(
         tap((data: IPlanetsPreview) => {
@@ -26,6 +27,10 @@ export class SwapiService {
         })
       );
   }
+
+  // getPagination() {
+  //   return this.http.get<IPlanetsPreview | HttpErrorResponse>(page);
+  // }
 
   getHash(value: any): Observable<any> {
     return of(value);

@@ -3,15 +3,19 @@ import { IPlanet, IResidents } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SwapiService } from '../../services/swapi.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-planet-info',
   templateUrl: './planet-info.component.html',
   styleUrls: ['./planet-info.component.scss']
 })
+
 export class PlanetInfoComponent {
   data: IPlanet[];
+  planetInfo: IPlanet;
   residents: IResidents[];
+  allResidents: IResidents[];
   error: boolean;
   loading = true;
 
@@ -19,6 +23,7 @@ export class PlanetInfoComponent {
     public service: SwapiService,
     public router: Router,
     public route: ActivatedRoute,
+    private _location: Location
   ) {
     this.route.paramMap.subscribe(params => {
       this.onRouteParamsChanged(params);
@@ -28,6 +33,18 @@ export class PlanetInfoComponent {
   // ngOnInit() {
   //   this.loadData();
   // }
+  goBack() {
+    this._location.back();
+  }
+
+  filterResidents(event) {
+    const gender = event.target.id.trim().toLowerCase();
+    if (gender !== 'all') {
+      this.residents = this.allResidents.filter(resident => resident.gender === gender);
+      return;
+    }
+    this.residents = this.allResidents;
+  }
 
   loadData(planetId: string) {
     this.service.getPlanetInfo(planetId)
@@ -42,9 +59,9 @@ export class PlanetInfoComponent {
   }
 
   _onLoadSuccess([planetInfo, residents]) {
-    // console.log(planetInfo, residents);
+    this.planetInfo = planetInfo;
     this.residents = residents;
-    console.log(this.residents);
+    this.allResidents = residents;
     this.error = false;
     this.loading = false;
   }
