@@ -2,26 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { SwapiService } from '../../services/swapi.service';
 import { IPlanet, IPlanetsPreview } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-planets',
   templateUrl: './planets.component.html',
   styleUrls: ['./planets.component.scss']
 })
-export class PlanetsComponent implements OnInit {
+export class PlanetsComponent {
   data: IPlanet[];
   dataPreview: IPlanetsPreview;
   error: boolean;
   loading = true;
 
-  constructor(public service: SwapiService) {
+  constructor(
+    public service: SwapiService,
+    public router: Router,
+    public route: ActivatedRoute,
+  ) {
+    this.route.paramMap.subscribe(params => {
+      this.onRouteParamsChanged(params);
+    });
   }
 
-  ngOnInit() {
-    this.loadData('');
+  pageSlice(page) {
+    return page.slice(page.lastIndexOf('=') + 1);
   }
 
-  loadData(page) {
+  loadData(page: string) {
     this.service.getPlanets(page)
       .subscribe(
         (data: IPlanetsPreview) => this._onLoadSuccess(data),
@@ -31,7 +39,6 @@ export class PlanetsComponent implements OnInit {
 
   _onLoadSuccess(data: IPlanetsPreview) {
     this.data = data.results;
-    console.log(data);
     this.dataPreview = data;
     this.error = false;
     this.loading = false;
@@ -39,5 +46,10 @@ export class PlanetsComponent implements OnInit {
 
   _onLoadError(response: HttpErrorResponse) {
     this.error = true;
+  }
+
+  onRouteParamsChanged(params: ParamMap) {
+    const page = params.get('page');
+    this.loadData(page);
   }
 }

@@ -1,11 +1,14 @@
 <div class="planet-info">
-  <div class="loading" *ngIf="loading">
+  <div class="loading" *ngIf="loading && !error">
     Loading
     <app-loading></app-loading>
   </div>
   <div class="planet-wrapper" *ngIf="!loading">
     <div class="planet-info-header">
-      <a class="planet-link" (click)="goBack()">Go back</a>
+      <div>
+        <a class="planet-link" (click)="goBack()">Go back</a>
+        <a class="planet-link" [routerLink]="'/1'">Go home</a>
+      </div>
       <div class="gender-filter" *ngIf="allResidents.length">
         <h2 class="gender-filter-title">Filter by gender</h2>
         <form #genderForm="ngForm" (change)="filterResidents($event)">
@@ -56,5 +59,10 @@
     <div class="residents-empty" *ngIf="!residents.length">
       <h1>There are no residents on this planet.</h1>
     </div>
+  </div>
+  <div class="error" *ngIf="error">
+    <app-error>
+
+    </app-error>
   </div>
 </div>

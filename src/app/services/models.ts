@@ -1,7 +1,9 @@
 export interface IPlanetsPreview {
   count: number;
   next: string;
-  previous: any;
+  nextPage: string;
+  previous: string;
+  previousPage: string;
   results: IPlanet[];
 }
 
@@ -40,4 +42,15 @@ export interface IResidents {
   starships: string[];
   url: string;
   vehicles: string[];
+}
+
+export interface IError {
+  error: {};
+  headers: {};
+  message: string;
+  name: string;
+  ok: boolean;
+  status: number;
+  statusText: string;
+  url: string;
 }

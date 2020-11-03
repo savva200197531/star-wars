@@ -6,7 +6,7 @@
   <div class="planets" *ngIf="!loading">
     <h1 class="planets-title">Planets</h1>
     <div class="planets-wrapper">
-      <a *ngFor="let planet of data" class="planet-card" [routerLink]="[planet.id]">
+      <a *ngFor="let planet of data" class="planet-card" [routerLink]="['planet' + planet.id]">
         <h1 class="planet-name">{{ planet.name }}</h1>
         <div>climate: <span>{{ planet.climate }}</span></div>
         <div>created: <span>{{ planet.created }}</span></div>
@@ -21,8 +21,20 @@
       </a>
     </div>
     <div class="pages">
-      <a class="page-link" *ngIf="dataPreview.previous" (click)="loadData(dataPreview.previous)"><- Prev</a>
-      <a class="page-link" *ngIf="dataPreview.next" (click)="loadData(dataPreview.next)">Next -></a>
+      <a
+        class="page-link"
+        [routerLink]="'/' + [pageSlice(dataPreview.previous)]"
+        *ngIf="dataPreview.previous"
+      >
+        <- Prev
+      </a>
+      <a
+        class="page-link"
+        [routerLink]="'/' + [pageSlice(dataPreview.next)]"
+        *ngIf="dataPreview.next"
+      >
+        Next ->
+      </a>
     </div>
   </div>
 </div>

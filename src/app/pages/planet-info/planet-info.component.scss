@@ -12,6 +12,11 @@
     border: 3px solid $cardText;
     border-radius: 4px;
     padding: 5px 8px;
+    cursor: pointer;
+  }
+
+  .planet-link:last-child {
+    margin-left: 10px;
   }
 
   .planet-info-header {
@@ -82,11 +87,6 @@
     span {
       font-weight: 300;
     }
-  }
-
-  .resident:hover {
-    cursor: pointer;
-    transition: 0.2s ease-in;
   }
 
   .residents-empty {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IPlanetsPreview } from './models';
+import { IPlanet, IPlanetsPreview } from './models';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { forkJoin, Observable, of } from 'rxjs';
 
@@ -17,7 +17,9 @@ export class SwapiService {
 
   getPlanets(page: string) {
     let path: string;
-    !page ? path = this.url('planets') : path = page;
+    let currentPage: string;
+    !page ? currentPage = '1' : currentPage = page.slice(page.lastIndexOf('=') + 1);
+    path = this.url(`planets/?page=${currentPage}`);
     return this.http.get<IPlanetsPreview | HttpErrorResponse>(path)
       .pipe(
         tap((data: IPlanetsPreview) => {
@@ -28,26 +30,22 @@ export class SwapiService {
       );
   }
 
-  // getPagination() {
-  //   return this.http.get<IPlanetsPreview | HttpErrorResponse>(page);
-  // }
-
-  getHash(value: any): Observable<any> {
+  getHash(value: IPlanet): Observable<IPlanet> {
     return of(value);
   }
 
   getPlanetInfo(planetId: string) {
-    const path = this.url(`planets/${planetId}`);
+    const newId = planetId.slice(planetId.lastIndexOf('planet') + 6);
+    const path = this.url(`planets/${newId}`);
     return this.http.get(path).pipe(
-      mergeMap((info: any) => {
+      mergeMap((info: IPlanet) => {
         const requests = [];
-
         info.residents.forEach(url => {
           requests.push(this.getResident(url));
         });
         return forkJoin([this.getHash(info), ...requests]);
       }),
-      map(([info, ...residents]) => {
+      map(([info, ...residents]: IPlanet[]) => {
         return [info, [...residents]];
       }),
     );

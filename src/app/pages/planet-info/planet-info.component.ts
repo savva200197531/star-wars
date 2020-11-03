@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IPlanet, IResidents } from '../../services/models';
+import { IError, IPlanet, IResidents } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SwapiService } from '../../services/swapi.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -16,6 +16,7 @@ export class PlanetInfoComponent {
   planetInfo: IPlanet;
   residents: IResidents[];
   allResidents: IResidents[];
+  errorData: IError;
   error: boolean;
   loading = true;
 
@@ -30,9 +31,6 @@ export class PlanetInfoComponent {
     });
   }
 
-  // ngOnInit() {
-  //   this.loadData();
-  // }
   goBack() {
     this._location.back();
   }
@@ -49,13 +47,17 @@ export class PlanetInfoComponent {
   loadData(planetId: string) {
     this.service.getPlanetInfo(planetId)
       .subscribe(
-        (data: [any, any]) => this._onLoadSuccess(data),
+        (data: [any, any]) => {
+          this._onLoadSuccess(data);
+        },
         response => this._onLoadError(response)
       );
   }
 
   _onLoadError(response: HttpErrorResponse) {
     this.error = true;
+    this.errorData = response;
+    console.log(this.errorData);
   }
 
   _onLoadSuccess([planetInfo, residents]) {
@@ -67,7 +69,7 @@ export class PlanetInfoComponent {
   }
 
   onRouteParamsChanged(params: ParamMap) {
-    const planetId = params.get('id');
+    const planetId = params.get('planet');
     this.loadData(planetId);
   }
 }

@@ -6,10 +6,15 @@ import { PlanetInfoComponent } from './pages/planet-info/planet-info.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '1',
+    pathMatch: 'full'
+  },
+  {
+    path: ':page',
     component: PlanetsComponent,
   },
   {
-    path: ':id',
+    path: ':page/:planet',
     component: PlanetInfoComponent
   }
 ];
