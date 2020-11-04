@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlanetsComponent } from './pages/planets/planets.component';
-import { PlanetInfoComponent } from './pages/planet-info/planet-info.component';
+import { PlanetsPageComponent } from './pages/planets-page/planets-page.component';
+import { PlanetInfoPageComponent } from './pages/planet-info-page/planet-info-page.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
@@ -13,8 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PlanetsComponent,
-    PlanetInfoComponent,
+    PlanetsPageComponent,
+    PlanetInfoPageComponent,
     LoadingComponent,
     HomeComponent
   ],

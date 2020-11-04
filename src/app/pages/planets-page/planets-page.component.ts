@@ -6,10 +6,10 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-planets',
-  templateUrl: './planets.component.html',
-  styleUrls: ['./planets.component.scss']
+  templateUrl: './planets-page.component.html',
+  styleUrls: ['./planets-page.component.scss']
 })
-export class PlanetsComponent {
+export class PlanetsPageComponent {
   data: IPlanet[];
   dataPreview: IPlanetsPreview;
   errorData: IError;

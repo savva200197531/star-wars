@@ -25,7 +25,7 @@ export interface IPlanet {
   id?: string;
 }
 
-export interface IResidents {
+export interface IResident {
   birth_year: string;
   created: string;
   edited: string;

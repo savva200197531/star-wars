@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IPlanet, IPlanetsPreview } from './models';
+import { IPlanet, IPlanetsPreview, IResident } from './models';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { forkJoin, Observable, of } from 'rxjs';
 
@@ -24,7 +24,7 @@ export class SwapiService {
       .pipe(
         tap((data: IPlanetsPreview) => {
           data.results.forEach(planet => {
-            planet.id = planet.url.slice(planet.url.lastIndexOf('planets/') + 8, -1);
+            planet.id = planet.url.slice(planet.url.lastIndexOf('planets-page/') + 8, -1);
           });
         })
       );
@@ -45,8 +45,8 @@ export class SwapiService {
         });
         return forkJoin([this.getHash(info), ...requests]);
       }),
-      map(([info, ...residents]: IPlanet[]) => {
-        return [info, [...residents]];
+      map(([info, ...residents]) => {
+        return [info, [...residents]] as [IPlanet, IResident[]];
       }),
     );
   }

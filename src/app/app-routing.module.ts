@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlanetsComponent } from './pages/planets/planets.component';
-import { PlanetInfoComponent } from './pages/planet-info/planet-info.component';
+import { PlanetsPageComponent } from './pages/planets-page/planets-page.component';
+import { PlanetInfoPageComponent } from './pages/planet-info-page/planet-info-page.component';
 
 const routes: Routes = [
   {
@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'planets',
-    component: PlanetsComponent,
+    component: PlanetsPageComponent,
   },
   {
     path: 'planets/:planet',
-    component: PlanetInfoComponent
+    component: PlanetInfoPageComponent
   }
 ];
 

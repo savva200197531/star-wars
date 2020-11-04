@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IError, IPlanet, IResidents } from '../../services/models';
+import { IError, IPlanet, IResident } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SwapiService } from '../../services/swapi.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -7,15 +7,15 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-planet-info',
-  templateUrl: './planet-info.component.html',
-  styleUrls: ['./planet-info.component.scss']
+  templateUrl: './planet-info-page.component.html',
+  styleUrls: ['./planet-info-page.component.scss']
 })
 
-export class PlanetInfoComponent {
+export class PlanetInfoPageComponent {
   data: IPlanet[];
   planetInfo: IPlanet;
-  residents: IResidents[];
-  allResidents: IResidents[];
+  residents: IResident[];
+  allResidents: IResident[];
   errorData: IError;
   error: boolean;
   loading = true;
@@ -47,7 +47,7 @@ export class PlanetInfoComponent {
   loadData(planetId: string) {
     this.service.getPlanetInfo(planetId)
       .subscribe(
-        (data: [any, any]) => {
+        (data: [IPlanet, IResident[]]) => {
           this._onLoadSuccess(data);
         },
         response => this._onLoadError(response)
