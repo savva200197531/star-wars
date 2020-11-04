@@ -8,13 +8,15 @@ import { PlanetsComponent } from './pages/planets/planets.component';
 import { PlanetInfoComponent } from './pages/planet-info/planet-info.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlanetsComponent,
     PlanetInfoComponent,
-    LoadingComponent
+    LoadingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

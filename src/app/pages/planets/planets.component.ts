@@ -30,7 +30,7 @@ export class PlanetsComponent {
     return page.slice(page.lastIndexOf('=') + 1);
   }
 
-  loadData(page: string) {
+  loadData(page = '') {
     this.service.getPlanets(page)
       .subscribe(
         (data: IPlanetsPreview) => this._onLoadSuccess(data),
@@ -51,7 +51,7 @@ export class PlanetsComponent {
   }
 
   onRouteParamsChanged(params: ParamMap) {
-    const page = params.get('page');
+    const page = params.get('page') ? params.get('page') : '';
     this.loadData(page);
   }
 }

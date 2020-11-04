@@ -18,7 +18,7 @@ export class SwapiService {
   getPlanets(page: string) {
     let path: string;
     let currentPage: string;
-    !page ? currentPage = '1' : currentPage = page.slice(page.lastIndexOf('=') + 1);
+    currentPage = page.length ? page.slice(page.lastIndexOf('=') + 1) : '1';
     path = this.url(`planets/?page=${currentPage}`);
     return this.http.get<IPlanetsPreview | HttpErrorResponse>(path)
       .pipe(

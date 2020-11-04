@@ -23,22 +23,20 @@
     <div class="pages">
       <a
         class="page-link"
-        [routerLink]="'/' + [pageSlice(dataPreview.previous)]"
-        *ngIf="dataPreview.previous"
-      >
+        [routerLink]="['/planets', { page: pageSlice(dataPreview.previous) }]"
+        *ngIf="dataPreview.previous">
         <- Prev
       </a>
       <a
         class="page-link"
-        [routerLink]="'/' + [pageSlice(dataPreview.next)]"
-        *ngIf="dataPreview.next"
-      >
+        [routerLink]="['/planets', { page: pageSlice(dataPreview.next) }]"
+        *ngIf="dataPreview.next">
         Next ->
       </a>
     </div>
   </div>
   <div class="error" *ngIf="error">
     <p class="error-message">{{ errorData.message }}</p>
-    <a class="planet-link" [routerLink]="'/1'">Go home</a>
+    <app-home></app-home>
   </div>
 </div>

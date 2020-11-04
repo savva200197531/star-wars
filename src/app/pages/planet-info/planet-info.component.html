@@ -7,7 +7,7 @@
     <div class="planet-info-header">
       <div>
         <a class="planet-link" (click)="goBack()">Go back</a>
-        <a class="planet-link" [routerLink]="'/1'">Go home</a>
+        <app-home></app-home>
       </div>
       <div class="gender-filter" *ngIf="allResidents.length">
         <h2 class="gender-filter-title">Filter by gender</h2>
@@ -62,6 +62,6 @@
   </div>
   <div class="error" *ngIf="error">
     <p class="error-message">{{ errorData.message }}</p>
-    <a class="planet-link" [routerLink]="'/1'">Go home</a>
+    <app-home></app-home>
   </div>
 </div>
