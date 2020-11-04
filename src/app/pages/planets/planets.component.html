@@ -1,5 +1,5 @@
 <div class="planet">
-  <div class="loading" *ngIf="loading">
+  <div class="loading" *ngIf="loading && !error">
     Loading
     <app-loading></app-loading>
   </div>
@@ -36,5 +36,9 @@
         Next ->
       </a>
     </div>
+  </div>
+  <div class="error" *ngIf="error">
+    <p class="error-message">{{ errorData.message }}</p>
+    <a class="planet-link" [routerLink]="'/1'">Go home</a>
   </div>
 </div>

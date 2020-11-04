@@ -61,8 +61,7 @@
     </div>
   </div>
   <div class="error" *ngIf="error">
-    <app-error>
-
-    </app-error>
+    <p class="error-message">{{ errorData.message }}</p>
+    <a class="planet-link" [routerLink]="'/1'">Go home</a>
   </div>
 </div>

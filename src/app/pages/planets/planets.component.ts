@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SwapiService } from '../../services/swapi.service';
-import { IPlanet, IPlanetsPreview } from '../../services/models';
+import { IError, IPlanet, IPlanetsPreview } from '../../services/models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 export class PlanetsComponent {
   data: IPlanet[];
   dataPreview: IPlanetsPreview;
+  errorData: IError;
   error: boolean;
   loading = true;
 
@@ -46,6 +47,7 @@ export class PlanetsComponent {
 
   _onLoadError(response: HttpErrorResponse) {
     this.error = true;
+    this.errorData = response;
   }
 
   onRouteParamsChanged(params: ParamMap) {

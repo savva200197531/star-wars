@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+@import "variables";
 
 body {
   margin: 0;
@@ -19,4 +20,26 @@ ul, li {
 
 a {
   text-decoration: none;
+}
+
+.planet-link {
+  color: $cardText;
+  font-weight: 700;
+  font-size: 20px;
+  border: 3px solid $cardText;
+  border-radius: 4px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.error {
+  margin-top: 300px;
+  color: $cardText;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.error-message {
+  margin-bottom: 20px;
 }

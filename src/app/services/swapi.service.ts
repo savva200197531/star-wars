@@ -41,7 +41,7 @@ export class SwapiService {
       mergeMap((info: IPlanet) => {
         const requests = [];
         info.residents.forEach(url => {
-          requests.push(this.getResident(url));
+          requests.push(this.getHttps(url));
         });
         return forkJoin([this.getHash(info), ...requests]);
       }),
@@ -51,7 +51,7 @@ export class SwapiService {
     );
   }
 
-  getResident(url: string) {
+  getHttps(url: string) {
     return this.http.get(url.replace('http', 'https'));
   }
 

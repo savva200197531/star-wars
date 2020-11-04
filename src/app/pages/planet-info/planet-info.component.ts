@@ -57,7 +57,6 @@ export class PlanetInfoComponent {
   _onLoadError(response: HttpErrorResponse) {
     this.error = true;
     this.errorData = response;
-    console.log(this.errorData);
   }
 
   _onLoadSuccess([planetInfo, residents]) {
