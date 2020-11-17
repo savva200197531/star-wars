@@ -24,7 +24,7 @@ export class SwapiService {
       .pipe(
         tap((data: IPlanetsPreview) => {
           data.results.forEach(planet => {
-            planet.id = planet.url.slice(planet.url.lastIndexOf('planets-page/') + 8, -1);
+            planet.id = planet.url.slice(planet.url.lastIndexOf('planets/') + 8, -1);
           });
         })
       );
